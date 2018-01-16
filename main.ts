@@ -5,11 +5,11 @@ namespace sourcekit {
     let head = pins.createBuffer(3);
 
     export enum Servo {
-        YL,
-        YR,
-        RL,
         RR,
-    }
+        RL,
+        YR,
+        YL,
+    };
 
     export enum Easing {
         Linear,
