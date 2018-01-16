@@ -102,5 +102,63 @@ namespace sourcekit {
         transmit(payload);
     }
 
+    //% blockId=sourcekit_turn_right block="turn right in %span |ms" 
+    export function turnRight(span: number) {
+        oscillate(
+            Servo.RR,
+            16,
+            span,
+            270
+        )
+        oscillate(
+            Servo.RL,
+            30,
+            span,
+            270
+        )
+        oscillate(
+            Servo.YR,
+            30,
+            span,
+            0
+        )
+        oscillate(
+            Servo.YL,
+            15,
+            span,
+            270
+        )
+        basic.pause(span);
+    }
+
+    //% blockId=sourcekit_turn_left block="turn left in %span |ms" 
+    export function turnLeft(span: number) {
+        oscillate(
+            Servo.RR,
+            30,
+            span,
+            90
+        )
+        oscillate(
+            Servo.RL,
+            16,
+            span,
+            90
+        )
+        oscillate(
+            Servo.YR,
+            15,
+            span,
+            90
+        )
+        oscillate(
+            Servo.YL,
+            30,
+            span,
+            180
+        )
+        basic.pause(span);
+    }
+
 
 }
