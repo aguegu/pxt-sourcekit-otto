@@ -12,34 +12,34 @@ namespace sourcekit {
     };
 
     export enum Easing {
-        Linear,
-        SineIn,
-        SineOut,
-        SineInOut,
-        QuadIn,
-        QuadOut,
-        QuadInOut,
-        CubicIn,
-        CubicOut,
-        CubicInOut,
-        QuarticIn,
-        QuarticOut,
-        QuarticInOut,
-        ExponentialIn,
-        ExponentialOut,
-        ExponentialInOut,
-        CircularIn,
-        CircularOut,
-        CircularInOut,
-        BackIn,
-        BackOut,
-        BackInOut,
-        ElasticIn,
-        ElasticOut,
-        ElasticInOut,
-        BounceIn,
-        BounceOut,
-        BounceInOut,
+        Linear = 0,
+        SineIn = 1,
+        SineOut = 2,
+        SineInOut = 3,
+        // QuadIn = 4,
+        // QuadOut = 5,
+        // QuadInOut = 6,
+        // CubicIn = 7,
+        // CubicOut = 8,
+        // CubicInOut = 9,
+        QuarticIn = 10,
+        QuarticOut = 11,
+        QuarticInOut = 12,
+        // ExponentialIn = 13,
+        // ExponentialOut = 14,
+        // ExponentialInOut = 15,
+        // CircularIn = 16,
+        // CircularOut = 17,
+        // CircularInOut = 18,
+        BackIn = 19,
+        BackOut = 20,
+        BackInOut = 21,
+        ElasticIn = 22,
+        ElasticOut = 23,
+        ElasticInOut = 24,
+        BounceIn = 25,
+        BounceOut = 26,
+        BounceInOut = 27,
     }
 
     function transmit(payload: Buffer) {
@@ -70,7 +70,7 @@ namespace sourcekit {
         transmit(payload);
     }
 
-    //% blockId=sourcekit_oscillate block="oscillate servo #%servo |Amplitude %amplitude |in (ms) %span ms|Phase %phase"
+    //% blockId=sourcekit_oscillate block="oscillate servo #%servo |Amplitude(°) %amplitude |in(ms) %span|Phase(°) %phase"
     export function oscillate(index: Servo, amplitude: number, span: number, phase: number): void {
         let payload = pins.createBuffer(8);
         payload.setNumber(NumberFormat.UInt8LE, 0, 0x06);
@@ -81,15 +81,15 @@ namespace sourcekit {
         transmit(payload);
     }
 
-    //% blockId=sourcekit_all block="move servo all to degree(°) %angle |in (ms) %span ms|style %curve"
-    export function all(angle: number, span: number, curve: Easing): void {
+    //% blockId=sourcekit_all block="move servo all to degree(°) %angle |in(ms) %span"
+    export function all(angle: number, span: number, curve = Easing.Linear): void {
         let payload = pins.createBuffer(1 + 6 * 4);
         payload.setNumber(NumberFormat.UInt8LE, 0, 0x05);
         for (let i = 0; i < 4; i++) {
-            payload.setNumber(NumberFormat.UInt8LE, i * 6 + 0, i);
-            payload.setNumber(NumberFormat.UInt16LE, i * 6 + 1, angle);
-            payload.setNumber(NumberFormat.UInt16LE, i * 6 + 3, span / 10);
-            payload.setNumber(NumberFormat.UInt8LE, i * 6 + 5, curve);
+            payload.setNumber(NumberFormat.UInt8LE, i * 6 + 1, i);
+            payload.setNumber(NumberFormat.UInt16LE, i * 6 + 2, angle);
+            payload.setNumber(NumberFormat.UInt16LE, i * 6 + 4, span / 10);
+            payload.setNumber(NumberFormat.UInt8LE, i * 6 + 6, curve);
         }
         transmit(payload);
     }
