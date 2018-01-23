@@ -86,10 +86,10 @@ namespace sourcekit {
         let payload = pins.createBuffer(1 + 6 * 4);
         payload.setNumber(NumberFormat.UInt8LE, 0, 0x05);
         for (let i = 0; i < 4; i++) {
-            payload.setNumber(NumberFormat.UInt8LE, i * 6 + 1, i);
-            payload.setNumber(NumberFormat.UInt16LE, i * 6 + 2, angle);
-            payload.setNumber(NumberFormat.UInt16LE, i * 6 + 4, span / 10);
-            payload.setNumber(NumberFormat.UInt8LE, i * 6 + 6, curve);
+            payload.setNumber(NumberFormat.UInt8LE, i * 6 + 0, i);
+            payload.setNumber(NumberFormat.UInt16LE, i * 6 + 1, angle);
+            payload.setNumber(NumberFormat.UInt16LE, i * 6 + 3, span / 10);
+            payload.setNumber(NumberFormat.UInt8LE, i * 6 + 5, curve);
         }
         transmit(payload);
     }
