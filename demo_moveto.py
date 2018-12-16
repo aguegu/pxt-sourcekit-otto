@@ -41,9 +41,7 @@ uid = 0
 
 def transmit(payload):
     global uid
-    tx = bytes([len(payload) + 2, uid, 0xff - uid]) + payload
-    # print('tx:', toHex(tx), datetime.now())
-    # print('tx:', toHex(tx))
+    tx = bytes([len(payload) + 2, uid, 0xff - uid]) + payload    
     uart.write(tx)
     uid += 1
     uid &= 0xff
