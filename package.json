@@ -1,0 +1,26 @@
+{
+  "name": "servo-dongle",
+  "version": "0.1.0",
+  "description": "sourcekit servo dongle app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aguegu/pxt-sourcekit-otto.git"
+  },
+  "keywords": [
+    "servo",
+    "otto"
+  ],
+  "author": "aGuegu <weihong.guan@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aguegu/pxt-sourcekit-otto/issues"
+  },
+  "homepage": "https://github.com/aguegu/pxt-sourcekit-otto#readme",
+  "devDependencies": {
+    "electron": "^4.0.0"
+  }
+}
