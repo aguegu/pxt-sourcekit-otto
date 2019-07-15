@@ -58,7 +58,7 @@ namespace sourcekit {
         serial.redirect(tx, rx, 115200);
     }
 
-    //% blockId=sourcekit_moveto block="move servo #%servo to %angle ° in %span ms style %curve"
+    //% blockId=sourcekit_moveto block="move %servo to %angle ° |in %span ms style %curve"
     //% angle.min=0 angle.max=180
     export function moveto(index: Servo, angle: number, span: number, curve: Easing): void {
         let payload = pins.createBuffer(7);
