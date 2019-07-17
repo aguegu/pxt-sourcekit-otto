@@ -58,9 +58,10 @@ namespace sourcekit {
         serial.redirect(tx, rx, 115200);
     }
 
-    //% blockId=sourcekit_moveto block="move %servo to %angle ° |in %span ms style %curve"
-    //% angle.min=0 angle.max=180
-    export function moveto(index: Servo, angle: number, span: number, curve: Easing): void {
+    //% blockId=sourcekit_moveto block="roll %servo to %angle ° in %span ms || style %curve"
+    //% angle.min=0 angle.max=180 curve.defl=Easing.Linear
+    //% inlineInputMode=inline
+    export function moveto(index: Servo, angle: number, span: number, curve?: Easing): void {
         let payload = pins.createBuffer(7);
         payload.setNumber(NumberFormat.UInt8LE, 0, 0x05);
         payload.setNumber(NumberFormat.UInt8LE, 1, index);
@@ -70,8 +71,10 @@ namespace sourcekit {
         transmit(payload);
     }
 
-    //% blockId=sourcekit_oscillate block="oscillate servo #%servo |Amplitude(°) %amplitude |in(ms) %span|Phase(°) %phase"
-    export function oscillate(index: Servo, amplitude: number, span: number, phase: number): void {
+    //% blockId=sourcekit_oscillate block="oscillate %servo Amplitude %amplitude ° in %span ms || Phase %phase °"
+    //% phase.defl=0
+    //% inlineInputMode=inline
+    export function oscillate(index: Servo, amplitude: number, span: number, phase?: number): void {
         let payload = pins.createBuffer(8);
         payload.setNumber(NumberFormat.UInt8LE, 0, 0x06);
         payload.setNumber(NumberFormat.UInt8LE, 1, index);
@@ -81,7 +84,7 @@ namespace sourcekit {
         transmit(payload);
     }
 
-    //% blockId=sourcekit_all block="move servo all to degree(°) %angle |in(ms) %span"
+    //% blockId=sourcekit_all block="roll all to %angle° in %span ms"
     export function all(angle: number, span: number, curve = Easing.Linear): void {
         let payload = pins.createBuffer(1 + 6 * 4);
         payload.setNumber(NumberFormat.UInt8LE, 0, 0x05);
